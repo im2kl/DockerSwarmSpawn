@@ -14,8 +14,9 @@ IFS=$(printf '\n\t')
 # Docker
 # sudo apt remove --yes docker docker-engine docker.io containerd runc
 sudo apt update
-sudo apt --yes --no-install-recommends install apt-transport-https ca-certificates gnupg2 software-properties-common
-wget --quiet --output-document=- https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt --yes --no-install-recommends install apt-transport-https ca-certificates gnupg2 software-properties-common curl
+# wget --quiet --output-document=- https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 sudo add-apt-repository --yes "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release --codename --short) stable"
 sudo apt update
 sudo apt --yes --no-install-recommends install docker-ce docker-ce-cli containerd.io
